@@ -1,34 +1,34 @@
 pipeline {
     agent any
     environment {
-        DOCKER_USERNAME = "sumayyasadaf"
-        DOCKER_PASSWORD = "Sumayya@123"
-        IMAGE_NAME = "sumayyasadaf/registration-form"
+        DOCKER_USERNAME = "likithavajinepalli"
+        DOCKER_PASSWORD = "Likkibala@L?1010"
+        IMAGE_NAME = "likithavajinepalli/a2week9"
         IMAGE_TAG = "latest"
     }
     stages {
         stage('Checkout') {
             steps {
-                echo "Checking out source code..."
+                echo "Checking out source code.."
                 checkout scm
             }
         }
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
-                bat "docker build -t %IMAGE_NAME%:%IMAGE_TAG% ."
+                bat "docker build -t registration-form:latest ."
             }
         }
         stage('Docker Login') {
             steps {
                 echo "Logging in to Docker Hub..."
-                bat "docker login -u %DOCKER_USERNAME% -p %DOCKER_PASSWORD%"
+                bat "docker login -u likithavajinepalli -p Likkibala@L?1010"
             }
         }
         stage('Push Docker Image to Docker Hub') {
             steps {
                 echo "Pushing Docker Image to Docker Hub..."
-                bat "docker push %IMAGE_NAME%:%IMAGE_TAG%"
+                bat "docker push registration-form:v1"
             }
         }
         stage('Deploy to Kubernetes') {
@@ -50,7 +50,7 @@ pipeline {
     post {
         success {
             echo "PIPELINE COMPLETED SUCCESSFULLY!"
-            echo "Docker Image: %IMAGE_NAME%:%IMAGE_TAG%"
+            echo "Docker Image: registration-form:v1"
             echo "Kubernetes deployment completed successfully!"
         }
         failure {
