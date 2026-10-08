@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a2week9-deployment
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: a2week9
+  template:
+    metadata:
+      labels:
+        app: a2week9
+    spec:
+      containers:
+        - name: a2week9
+          image: likithavajinepalli/a2week9:latest
+          ports:
+            - containerPort: 5000
