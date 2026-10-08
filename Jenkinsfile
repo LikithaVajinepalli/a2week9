@@ -16,7 +16,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 echo "Building Docker Image..."
-                bat "docker build -t registration-form:latest ."
+                bat "docker build -t likithavajinepalli/a2week9:latest ."
             }
         }
         stage('Docker Login') {
@@ -28,7 +28,7 @@ pipeline {
         stage('Push Docker Image to Docker Hub') {
             steps {
                 echo "Pushing Docker Image to Docker Hub..."
-                bat "docker push registration-form:v1"
+                bat "docker push likithavajinepalli/a2week9:latest"
             }
         }
         stage('Deploy to Kubernetes') {
